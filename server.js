@@ -8,6 +8,7 @@ var config      = require('./config/database'); // get db config file
 var User        = require('./app/models/user'); // get the mongoose model
 var port        = process.env.PORT || 8880;
 var jwt         = require('jwt-simple');
+var routes 		= require('./routes');
  
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,10 +35,10 @@ mongoose.connect(config.database);
 require('./config/passport')(passport);
  
 // bundle our routes
-var apiRoutes = express.Router();
+//var apiRoutes = express.Router();
  
 // create a new user account (POST http://localhost:8080/api/signup)
-apiRoutes.post('/signup', function(req, res) {
+/*apiRoutes.post('/signup', function(req, res) {
   if (!req.body.name || !req.body.username ||!req.body.age ||!req.body.height ||!req.body.weight || !req.body.password ) {
     res.json({success: false, msg: 'Please pass name,username,age,height,weight and password.'});
   } else {
@@ -71,9 +72,9 @@ apiRoutes.post('/signup', function(req, res) {
     });
   }
 });
+*/
 
-
-apiRoutes.post('/authenticate', function(req, res) {
+/*apiRoutes.post('/authenticate', function(req, res) {
   User.findOne({
     username: req.body.username
   }, function(err, user) {
@@ -93,8 +94,8 @@ apiRoutes.post('/authenticate', function(req, res) {
     }
   });
 });
-
-
+*/
+/*
 apiRoutes.post('/finduser', function(req, res) {
   if (!req.body.name) {
     res.json({success: false, msg: 'Please pass name.'});
@@ -122,9 +123,10 @@ apiRoutes.post('/finduser', function(req, res) {
   }
 });
 
-
+*/
 
  
 // connect the api routes under /api/*
-app.use('/api', apiRoutes);
+//app.use('/api', apiRoutes);
+routes(app);
 
