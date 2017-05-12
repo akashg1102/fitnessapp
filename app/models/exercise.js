@@ -6,6 +6,10 @@ var bcrypt = require('bcrypt');
  
 // set up a mongoose model
 var ExerciseSchema = new Schema({
+ exercisecategoryid: {
+        type: Number,
+        required: true
+   },
   exercisename: {
         type: String,
         required: true

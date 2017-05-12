@@ -6,12 +6,14 @@ module.exports = {
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		
-		if (!req.body.exercisename || !req.body.exercisedescription) {
-				res.json({success: false, msg: 'Please  exercisename &  exercisedescription.'});
+		if (!req.body.exercisename || !req.body.exercisedescription || !req.body.exercisecategoryid) {
+				res.json({success: false, msg: 'Please  exercisename &  exercisedescription & exercisecategoryid.'});
 			}else {
 				var newExerciseData = new Exercise({
+					exercisecategoryid :req.body.exercisecategoryid,
 					exercisename: req.body.exercisename,
 					exercisedescription: req.body.exercisedescription
+					
 					});
 					// save the exercise
 					newExerciseData.save(function(err) {
