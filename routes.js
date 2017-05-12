@@ -8,7 +8,7 @@ module.exports = function(app) {
 	router.post('/signup', user.signup);
 	router.post('/login', user.login);
 	router.post('/addexcercise', exercise.addexercise);
-	router.get('/listexercise', exercise.listexercise);
+	router.post('/listexercise', exercise.listexercise);
 	router.post('/addexercisecategory', exercisecategory.addexercisecategory);
 	router.get('/listexercisecategory', exercisecategory.listexercisecategory);
 	app.use(router);

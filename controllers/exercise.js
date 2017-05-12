@@ -26,7 +26,7 @@ module.exports = {
 		 
 	},
 	listexercise:function(req, res) {
-		Exercise.find({}, function (err, exercise) {
+		Exercise.find({ 'exercisecategoryid': req.body.exercisecategoryid}, function (err, exercise) {
 
 		if(!exercise) {return res.json({success: false, msg: 'no exercise exists.'}); }
 		res.json({success: true, msg: 'Successful found all exercise.' ,data:exercise});
