@@ -25,12 +25,18 @@ module.exports = {
 			}
 		 
 	},
-	listexercise:function(req, res) {
+	listexercise:function(req, res ,next) {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		Exercise.find({ 'exercisecategoryid': req.body.exercisecategoryid}, function (err, exercise) {
-
 		if(!exercise) {return res.json({success: false, msg: 'no exercise exists.'}); }
-		res.json({success: true, msg: 'Successful found all exercise.' ,data:exercise});
-		}).select('exercisename exercisedescription');
+		if(exercise.length > 0){
+			res.json({success: true, msg: 'Successful found all exercise.' ,data:exercise});
+      }else{
+		  res.json({success: false, msg: 'no exercise exists.'});
+
+		  }
+		}).select('exercisecategoryid exercisename exercisedescription');
 	},
 
 
