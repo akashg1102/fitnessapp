@@ -1,6 +1,6 @@
 var path 			= require('path');
 var Exercise        = require('../app/models/exercise');
-
+var fs = require('fs');
 module.exports = {
 	addexercise: function(req, res ,next) {
 		res.header("Access-Control-Allow-Origin", "*");
@@ -9,19 +9,25 @@ module.exports = {
 		if (!req.body.exercisename || !req.body.exercisedescription || !req.body.exercisecategoryid) {
 				res.json({success: false, msg: 'Please  exercisename &  exercisedescription & exercisecategoryid.'});
 			}else {
+				 
+				
+		   
+		   
 				var newExerciseData = new Exercise({
 					exercisecategoryid :req.body.exercisecategoryid,
 					exercisename: req.body.exercisename,
-					exercisedescription: req.body.exercisedescription
-					
+					exercisedescription: req.body.exercisedescription,
+					exercisepic :  req.file.path
 					});
+					
+					//res.json({success: true, msg: 'Welcome to API Home page.' ,filepath : newExerciseData});
 					// save the exercise
 					newExerciseData.save(function(err) {
 					if (err) {
 						return res.json({success: false, msg: err });
 					}
 						res.json({success: true, msg: 'Successful created added new  exercise.'});
-					}); 
+					});
 			}
 		 
 	},
@@ -36,7 +42,7 @@ module.exports = {
 		  res.json({success: false, msg: 'no exercise exists.'});
 
 		  }
-		}).select('exercisecategoryid exercisename exercisedescription');
+		}).select('exercisecategoryid exercisename exercisedescription exercisepic');
 	},
 
 

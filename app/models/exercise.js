@@ -18,6 +18,9 @@ var ExerciseSchema = new Schema({
         type: String,
         required: true
     },
+    exercisepic:{
+		type:String,
+	},
     timestamp:{ 
 		type :Date ,
 		'default': Date.now

@@ -9,7 +9,7 @@ var User        = require('./app/models/user'); // get the mongoose model
 var port        = process.env.PORT || 8880;
 var jwt         = require('jwt-simple');
 var routes 		= require('./routes');
- 
+ var path 			= require('path');
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,13 +17,15 @@ app.use(bodyParser.json());
 // log to console
 app.use(morgan('dev'));
  
+
+app.use("/uploads", express.static(__dirname + '/uploads'));
 // Use the passport package in our application
 app.use(passport.initialize());
  
 // demo Route (GET http://localhost:8080)
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
   res.send('Hello! The API is at http://localhost:' + port + '/api');
-});
+});*/
  
 // Start the server
 app.listen(port);

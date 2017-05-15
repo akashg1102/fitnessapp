@@ -1,6 +1,14 @@
 var path = require('path');
 var User        = require('../app/models/user');
+var fs = require('fs');
+
+
+
 module.exports = {
+	welcome : function (req, res ,next){
+		     
+		   res.json({success: true, msg: 'Welcome to API Home page.'});
+	},
 	signup: function(req, res) {
 		 
 		var signUpNewUser = function() {
