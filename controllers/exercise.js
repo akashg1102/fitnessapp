@@ -18,7 +18,7 @@ module.exports = {
 					// save the exercise
 					newExerciseData.save(function(err) {
 					if (err) {
-						return res.json({success: false, msg: 'Error in add exercise.'});
+						return res.json({success: false, msg: err });
 					}
 						res.json({success: true, msg: 'Successful created added new  exercise.'});
 					}); 

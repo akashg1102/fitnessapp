@@ -16,7 +16,6 @@ var ExerciseSchema = new Schema({
     },
     exercisedescription: {
         type: String,
-        unique: true,
         required: true
     },
     timestamp:{ 
